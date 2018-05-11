@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BqDemoTableViewController.h
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/5/11.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BqDemoTableViewController : UITableViewController
 
 @end
-
