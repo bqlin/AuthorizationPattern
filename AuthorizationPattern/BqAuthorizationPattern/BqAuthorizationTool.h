@@ -10,8 +10,9 @@
 
 typedef NS_ENUM(NSInteger, BqAuthorizationStatus) {
 	BqAuthorizationStatusUnknown = 0,
-	BqAuthorizationStatusDenied = 2,
-	BqAuthorizationStatusAuthorized = 3,
+	BqAuthorizationStatusRestricted,
+	BqAuthorizationStatusDenied,
+	BqAuthorizationStatusAuthorized,
 	BqAuthorizationStatusDisabled
 };
 typedef void(^BqAuthorizationStatusBlock)(BqAuthorizationStatus status);

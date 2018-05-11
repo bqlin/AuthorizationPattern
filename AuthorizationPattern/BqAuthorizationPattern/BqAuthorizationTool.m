@@ -20,6 +20,7 @@
 					if (resultCallback) resultCallback(status);
 				});
 			} break;
+			case BqAuthorizationStatusRestricted:
 			case BqAuthorizationStatusDenied:{
 				[self showDeniedAlert];
 			} break;
