@@ -31,9 +31,10 @@
 	/// 相册
 	BqPhotoAuthorizationItem *photoAuthorization = [[BqPhotoAuthorizationItem alloc] init];
 	photoAuthorization.viewControllerForAlert = self;
+	__weak typeof(photoAuthorization) weak_photoAuthorization = photoAuthorization;
 	photoAuthorization.resultCallback = ^(BOOL authorized) {
+		NSLog(@"%@%@", weak_photoAuthorization.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) {
-			NSLog(@"相册未授权");
 			return;
 		}
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
