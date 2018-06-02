@@ -15,9 +15,29 @@ typedef NS_ENUM(NSInteger, BqAuthorizationStatus) {
 	BqAuthorizationStatusAuthorized,
 	BqAuthorizationStatusDisabled
 };
+NS_INLINE NSString *DescriptionForBqAuthorizationStatus(BqAuthorizationStatus status) {
+	switch (status) {
+		case BqAuthorizationStatusUnknown:{
+			return @"Authorization Unknown";
+		} break;
+		case BqAuthorizationStatusRestricted:{
+			return @"Authorization Restricted";
+		} break;
+		case BqAuthorizationStatusDenied:{
+			return @"Authorization Denied";
+		} break;
+		case BqAuthorizationStatusAuthorized:{
+			return @"Authorization Authorized";
+		} break;
+		case BqAuthorizationStatusDisabled:{
+			return @"Authorization Disabled";
+		} break;
+	}
+}
+@class BqAuthorizationItem;
 typedef void(^BqAuthorizationStatusBlock)(BqAuthorizationStatus status);
 typedef void(^BqRequestAuthorizationStatusBlock)(BqAuthorizationStatusBlock statusHandler);
-typedef void(^BqAuthorizationResultBlock)(BOOL authorized);
+typedef void(^BqAuthorizationResultBlock)(BqAuthorizationItem *authorizationItem, BOOL authorized);
 
 @interface BqAuthorizationItem : NSObject
 
@@ -26,6 +46,12 @@ typedef void(^BqAuthorizationResultBlock)(BOOL authorized);
 
 /// 权限名称
 @property (nonatomic, copy) NSString *authorizationName;
+
+/// Info.plist 中权限名称，如已在 Info.plist 中填写，则无需赋值
+@property (nonatomic, copy) NSString *authorizationCocoaKey;
+
+/// Info.plist 中权限用途描述，如已在 Info.plist 中填写，则无需赋值
+@property (nonatomic, copy) NSString *authorizationUsageDescription;
 
 /// 异步获取权限当前状态操作
 @property (nonatomic, copy) BqRequestAuthorizationStatusBlock currentStatusHandler;

@@ -9,6 +9,7 @@
 #import "BqDemoTableViewController.h"
 #import "BqAuthorizationItem.h"
 #import "BqPhotoAuthorizationItem.h"
+#import "BqLocationAuthorizationItem.h"
 
 @interface BqDemoTableViewController ()
 
@@ -31,17 +32,24 @@
 	/// 相册
 	BqPhotoAuthorizationItem *photoAuthorization = [[BqPhotoAuthorizationItem alloc] init];
 	photoAuthorization.viewControllerForAlert = self;
-	__weak typeof(photoAuthorization) weak_photoAuthorization = photoAuthorization;
-	photoAuthorization.resultCallback = ^(BOOL authorized) {
-		NSLog(@"%@%@", weak_photoAuthorization.authorizationName, authorized ? @"授权成功" : @"未授权");
-		if (!authorized) {
-			return;
-		}
+	photoAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+		if (!authorized) return;
+		// 后续操作
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 		imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		[weakSelf presentViewController:imagePickerController animated:YES completion:nil];
 	};
 	[authorizationItems addObject:photoAuthorization];
+	
+	/// 定位
+	BqLocationAuthorizationItem *locationAuthorization = [[BqLocationAuthorizationItem alloc] init];
+	locationAuthorization.viewControllerForAlert = self;
+	locationAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+		if (!authorized) return;
+	};
+	[authorizationItems addObject:locationAuthorization];
 	
 	self.authorizationItems = authorizationItems.copy;
 }

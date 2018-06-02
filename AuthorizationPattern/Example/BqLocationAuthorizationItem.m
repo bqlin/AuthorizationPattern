@@ -22,6 +22,7 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 
 - (void)commonInit {
 	self.authorizationName = @"定位服务";
+	self.authorizationCocoaKey = @"NSLocationWhenInUseUsageDescription";
 	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
 		BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
 		if (![CLLocationManager locationServicesEnabled]) {
@@ -84,7 +85,7 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-	
+	if (self.locationAuthorizationChangeHandler) self.locationAuthorizationChangeHandler(status);
 }
 
 @end

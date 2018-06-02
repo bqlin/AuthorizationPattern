@@ -14,6 +14,7 @@
 			   currentStatus:(BqRequestAuthorizationStatusBlock)currentStatusHandler
 				resultStatus:(BqAuthorizationStatusBlock)statusCallback {
 	if (currentStatusHandler) currentStatusHandler(^(BqAuthorizationStatus status) {
+		//NSLog(@"current: %@", DescriptionForBqAuthorizationStatus(status));
 		switch (status) {
 			case BqAuthorizationStatusUnknown:{
 				if (authorizationRequestHandler) authorizationRequestHandler(^(BqAuthorizationStatus status) {
@@ -40,24 +41,36 @@
 - (void)commonInit {}
 
 - (void)requestAuthorization {
+	[self checkInfoPlistCocoaKey];
 	__weak typeof(self) weakSelf = self;
 	[self.class requestAuthorization:self.requestHandler currentStatus:self.currentStatusHandler resultStatus:^(BqAuthorizationStatus status) {
+		//NSLog(@"after request: %@", DescriptionForBqAuthorizationStatus(status));
 		switch (status) {
-			case BqAuthorizationStatusUnknown:
+			case BqAuthorizationStatusUnknown: {} break;
 			case BqAuthorizationStatusRestricted:
 			case BqAuthorizationStatusDenied: {
 				[weakSelf showDeniedAlert];
-				if (weakSelf.resultCallback) weakSelf.resultCallback(NO);
+				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, NO);
 			} break;
 			case BqAuthorizationStatusDisabled: {
 				[weakSelf showDisableAlert];
-				if (weakSelf.resultCallback) weakSelf.resultCallback(NO);
+				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, NO);
 			} break;
 			case BqAuthorizationStatusAuthorized: {
-				if (weakSelf.resultCallback) weakSelf.resultCallback(YES);
+				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, YES);
 			} break;
 		}
 	}];
+}
+
+- (void)checkInfoPlistCocoaKey {
+	if (!_authorizationCocoaKey.length) return;
+	if (!self.authorizationUsageDescription) _authorizationUsageDescription = @"";
+	NSString *infoPlistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+	NSMutableDictionary *infoDic = [[NSDictionary dictionaryWithContentsOfFile:infoPlistPath] mutableCopy];
+	if (infoDic[self.authorizationCocoaKey]) return;
+	infoDic[self.authorizationCocoaKey] = self.authorizationUsageDescription;
+	[infoDic writeToFile:infoPlistPath atomically:YES];
 }
 
 - (void)showDeniedAlert {

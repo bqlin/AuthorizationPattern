@@ -13,6 +13,8 @@
 
 - (void)commonInit {
 	self.authorizationName = @"相册";
+	self.authorizationCocoaKey = @"NSPhotoLibraryUsageDescription";
+	self.authorizationUsageDescription = @"";
 	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
 		PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
 		statusHandler((BqAuthorizationStatus)status);
