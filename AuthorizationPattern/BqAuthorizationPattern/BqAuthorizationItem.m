@@ -41,7 +41,7 @@
 - (void)commonInit {}
 
 - (void)requestAuthorization {
-	[self checkInfoPlistCocoaKey];
+	//[self checkInfoPlistCocoaKey];
 	__weak typeof(self) weakSelf = self;
 	[self.class requestAuthorization:self.requestHandler currentStatus:self.currentStatusHandler resultStatus:^(BqAuthorizationStatus status) {
 		//NSLog(@"after request: %@", DescriptionForBqAuthorizationStatus(status));
@@ -63,16 +63,16 @@
 	}];
 }
 
-- (void)checkInfoPlistCocoaKey {
-	NSString *infoPlistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
-	NSMutableDictionary *infoDic = [[NSDictionary dictionaryWithContentsOfFile:infoPlistPath] mutableCopy];
-	for (NSString *key in self.authorizationUsageDescriptions.allKeys) {
-		if (!key.length) continue;
-		if (infoDic[key]) continue;
-		infoDic[key] = self.authorizationUsageDescriptions[key];
-	}
-	[infoDic writeToFile:infoPlistPath atomically:YES];
-}
+//- (void)checkInfoPlistCocoaKey {
+//	NSString *infoPlistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+//	NSMutableDictionary *infoDic = [[NSDictionary dictionaryWithContentsOfFile:infoPlistPath] mutableCopy];
+//	for (NSString *key in self.authorizationUsageDescriptions.allKeys) {
+//		if (!key.length) continue;
+//		if (infoDic[key]) continue;
+//		infoDic[key] = self.authorizationUsageDescriptions[key];
+//	}
+//	[infoDic writeToFile:infoPlistPath atomically:YES];
+//}
 
 - (void)showDeniedAlert {
 	NSString *title = [NSString stringWithFormat:@"%@访问受限", self.authorizationName];

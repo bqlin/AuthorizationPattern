@@ -61,7 +61,6 @@
 	};
 	[authorizationItems addObject:contactsAuthorization];
 	
-	
 	self.authorizationItems = authorizationItems.copy;
 }
 

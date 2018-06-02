@@ -22,11 +22,6 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 
 - (void)commonInit {
 	self.authorizationName = @"定位服务";
-	self.authorizationUsageDescriptions =
-	@{
-	  @"NSLocationWhenInUseUsageDescription": @"",
-	  @"NSLocationAlwaysAndWhenInUseUsageDescription": @""
-	  };
 	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
 		BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
 		if (![CLLocationManager locationServicesEnabled]) {

@@ -14,7 +14,6 @@
 
 - (void)commonInit {
 	self.authorizationName = @"联系人";
-	self.authorizationUsageDescriptions = @{@"NSContactsUsageDescription": @""};
 	if (BQ_AVAILABLE(9.0)) {
 		self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
 			CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
