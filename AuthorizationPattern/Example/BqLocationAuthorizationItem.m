@@ -22,7 +22,11 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 
 - (void)commonInit {
 	self.authorizationName = @"定位服务";
-	self.authorizationCocoaKey = @"NSLocationWhenInUseUsageDescription";
+	self.authorizationUsageDescriptions =
+	@{
+	  @"NSLocationWhenInUseUsageDescription": @"",
+	  @"NSLocationAlwaysAndWhenInUseUsageDescription": @""
+	  };
 	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
 		BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
 		if (![CLLocationManager locationServicesEnabled]) {
@@ -49,7 +53,8 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 	};
 	__weak typeof(self) weakSelf = self;
 	self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
-		[weakSelf.locationManager requestWhenInUseAuthorization];
+		//[weakSelf.locationManager requestWhenInUseAuthorization];
+		[weakSelf.locationManager requestAlwaysAuthorization];
 		weakSelf.locationAuthorizationChangeHandler = ^(CLAuthorizationStatus locationStatus) {
 			BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
 			switch (locationStatus) {

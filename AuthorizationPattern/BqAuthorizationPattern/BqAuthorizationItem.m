@@ -64,12 +64,13 @@
 }
 
 - (void)checkInfoPlistCocoaKey {
-	if (!_authorizationCocoaKey.length) return;
-	if (!self.authorizationUsageDescription) _authorizationUsageDescription = @"";
 	NSString *infoPlistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
 	NSMutableDictionary *infoDic = [[NSDictionary dictionaryWithContentsOfFile:infoPlistPath] mutableCopy];
-	if (infoDic[self.authorizationCocoaKey]) return;
-	infoDic[self.authorizationCocoaKey] = self.authorizationUsageDescription;
+	for (NSString *key in self.authorizationUsageDescriptions.allKeys) {
+		if (!key.length) continue;
+		if (infoDic[key]) continue;
+		infoDic[key] = self.authorizationUsageDescriptions[key];
+	}
 	[infoDic writeToFile:infoPlistPath atomically:YES];
 }
 

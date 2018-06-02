@@ -47,11 +47,8 @@ typedef void(^BqAuthorizationResultBlock)(BqAuthorizationItem *authorizationItem
 /// 权限名称
 @property (nonatomic, copy) NSString *authorizationName;
 
-/// Info.plist 中权限名称，如已在 Info.plist 中填写，则无需赋值
-@property (nonatomic, copy) NSString *authorizationCocoaKey;
-
-/// Info.plist 中权限用途描述，如已在 Info.plist 中填写，则无需赋值
-@property (nonatomic, copy) NSString *authorizationUsageDescription;
+/// Info.plist 中权限用途描述，如已在 Info.plist 中填写，则无需赋值，赋值也不会覆盖
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *authorizationUsageDescriptions;
 
 /// 异步获取权限当前状态操作
 @property (nonatomic, copy) BqRequestAuthorizationStatusBlock currentStatusHandler;
