@@ -8,6 +8,9 @@
 
 #import "BqAuthorizationItem.h"
 
+/**
+ 定位权限请求
+ */
 @interface BqLocationAuthorizationItem : BqAuthorizationItem
 
 @end

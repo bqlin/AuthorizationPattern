@@ -10,6 +10,7 @@
 #import "BqAuthorizationItem.h"
 #import "BqPhotoAuthorizationItem.h"
 #import "BqLocationAuthorizationItem.h"
+#import "BqContactsAuthorizationItem.h"
 
 @interface BqDemoTableViewController ()
 
@@ -50,6 +51,16 @@
 		if (!authorized) return;
 	};
 	[authorizationItems addObject:locationAuthorization];
+	
+	/// 联系人
+	BqContactsAuthorizationItem *contactsAuthorization = [[BqContactsAuthorizationItem alloc] init];
+	contactsAuthorization.viewControllerForAlert = self;
+	contactsAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+		if (!authorized) return;
+	};
+	[authorizationItems addObject:contactsAuthorization];
+	
 	
 	self.authorizationItems = authorizationItems.copy;
 }

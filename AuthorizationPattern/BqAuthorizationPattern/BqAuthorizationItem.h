@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#define Xcode9 __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+#if Xcode9
+/// 可用版本
+#define BQ_AVAILABLE(v) @available(iOS v, *)
+#else
+/// 可用版本
+#define BQ_AVAILABLE(v) ([UIDevice currentDevice].systemVersion.floatValue >= (v))
+#endif
+
 typedef NS_ENUM(NSInteger, BqAuthorizationStatus) {
 	BqAuthorizationStatusUnknown = 0,
 	BqAuthorizationStatusRestricted,
@@ -34,6 +43,7 @@ NS_INLINE NSString *DescriptionForBqAuthorizationStatus(BqAuthorizationStatus st
 		} break;
 	}
 }
+
 @class BqAuthorizationItem;
 typedef void(^BqAuthorizationStatusBlock)(BqAuthorizationStatus status);
 typedef void(^BqRequestAuthorizationStatusBlock)(BqAuthorizationStatusBlock statusHandler);

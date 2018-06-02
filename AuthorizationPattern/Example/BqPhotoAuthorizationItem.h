@@ -8,6 +8,9 @@
 
 #import "BqAuthorizationItem.h"
 
+/**
+ 相册权限请求
+ */
 @interface BqPhotoAuthorizationItem : BqAuthorizationItem
 
 @end
