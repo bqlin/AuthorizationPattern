@@ -9,6 +9,26 @@
 #import "BqLocationAuthorizationItem.h"
 #import <CoreLocation/CoreLocation.h>
 
+NS_INLINE BqAuthorizationStatus authorizationStatusWithCLAuthorizationStatus(CLAuthorizationStatus locationStatus) {
+	BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
+	switch (locationStatus) {
+		case kCLAuthorizationStatusAuthorizedAlways:
+		case kCLAuthorizationStatusAuthorizedWhenInUse:{
+			status = BqAuthorizationStatusAuthorized;
+		} break;
+		case kCLAuthorizationStatusDenied:{
+			status = BqAuthorizationStatusDenied;
+		} break;
+		case kCLAuthorizationStatusRestricted:{
+			status = BqAuthorizationStatusRestricted;
+		} break;
+		case kCLAuthorizationStatusNotDetermined:{
+			status = BqAuthorizationStatusUnknown;
+		} break;
+	}
+	return status;
+}
+
 typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus locationStatus);
 
 @interface BqLocationAuthorizationItem ()<CLLocationManagerDelegate>
@@ -28,22 +48,7 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 			status = BqAuthorizationStatusDisabled;
 			return;
 		}
-		CLAuthorizationStatus locationStatus = [CLLocationManager authorizationStatus];
-		switch (locationStatus) {
-			case kCLAuthorizationStatusAuthorizedAlways:
-			case kCLAuthorizationStatusAuthorizedWhenInUse:{
-				status = BqAuthorizationStatusAuthorized;
-			} break;
-			case kCLAuthorizationStatusDenied:{
-				status = BqAuthorizationStatusDenied;
-			} break;
-			case kCLAuthorizationStatusRestricted:{
-				status = BqAuthorizationStatusRestricted;
-			} break;
-			case kCLAuthorizationStatusNotDetermined:{
-				status = BqAuthorizationStatusUnknown;
-			} break;
-		}
+		status = authorizationStatusWithCLAuthorizationStatus([CLLocationManager authorizationStatus]);
 		statusHandler(status);
 	};
 	__weak typeof(self) weakSelf = self;
@@ -51,22 +56,7 @@ typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus location
 		//[weakSelf.locationManager requestWhenInUseAuthorization];
 		[weakSelf.locationManager requestAlwaysAuthorization];
 		weakSelf.locationAuthorizationChangeHandler = ^(CLAuthorizationStatus locationStatus) {
-			BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
-			switch (locationStatus) {
-				case kCLAuthorizationStatusAuthorizedAlways:
-				case kCLAuthorizationStatusAuthorizedWhenInUse:{
-					status = BqAuthorizationStatusAuthorized;
-				} break;
-				case kCLAuthorizationStatusDenied:{
-					status = BqAuthorizationStatusDenied;
-				} break;
-				case kCLAuthorizationStatusRestricted:{
-					status = BqAuthorizationStatusRestricted;
-				} break;
-				case kCLAuthorizationStatusNotDetermined:{
-					status = BqAuthorizationStatusUnknown;
-				} break;
-			}
+			BqAuthorizationStatus status = authorizationStatusWithCLAuthorizationStatus(locationStatus);
 			statusHandler(status);
 		};
 	};
