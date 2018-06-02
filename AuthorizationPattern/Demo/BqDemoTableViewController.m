@@ -11,6 +11,8 @@
 #import "BqPhotoAuthorizationItem.h"
 #import "BqLocationAuthorizationItem.h"
 #import "BqContactsAuthorizationItem.h"
+#import "BqMicrophoneAuthorizationItem.h"
+#import "BqCameraAuthorizationItem.h"
 
 @interface BqDemoTableViewController ()
 
@@ -43,12 +45,33 @@
 	};
 	[authorizationItems addObject:photoAuthorization];
 	
+	/// 相机
+	BqCameraAuthorizationItem *cameraAuthorizationItem = [[BqCameraAuthorizationItem alloc] init];
+	cameraAuthorizationItem.viewControllerForAlert = self;
+	cameraAuthorizationItem.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+		if (!authorized) return;
+		// 后续操作
+	};
+	[authorizationItems addObject:cameraAuthorizationItem];
+	
+	/// 麦克风
+	BqMicrophoneAuthorizationItem *microphoneAuthorizationItem = [[BqMicrophoneAuthorizationItem alloc] init];
+	microphoneAuthorizationItem.viewControllerForAlert = self;
+	microphoneAuthorizationItem.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+		if (!authorized) return;
+		// 后续操作
+	};
+	[authorizationItems addObject:microphoneAuthorizationItem];
+	
 	/// 定位
 	BqLocationAuthorizationItem *locationAuthorization = [[BqLocationAuthorizationItem alloc] init];
 	locationAuthorization.viewControllerForAlert = self;
 	locationAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
+		// 后续操作
 	};
 	[authorizationItems addObject:locationAuthorization];
 	
@@ -58,6 +81,7 @@
 	contactsAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
+		// 后续操作
 	};
 	[authorizationItems addObject:contactsAuthorization];
 	

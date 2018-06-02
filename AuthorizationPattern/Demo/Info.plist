@@ -10,6 +10,10 @@
 	<string>定位服务用途</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>相册权限用途</string>
+	<key>NSCameraUsageDescription</key>
+	<string>相机权限用途</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>麦克风权限用途</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
