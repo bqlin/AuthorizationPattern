@@ -17,3 +17,53 @@
 - 按需实现或添加权限请求组件；
 - 异步 `获取权限当前状态`，异步 `请求权限`；
 - ~~可直接通过属性赋值实现 Info.plist 的权限描述；~~
+
+## 从此权限请求变得如此优雅
+
+### 权限请求封装
+
+```objective-c
+#import "BqAuthorizationItem.h"
+
+/**
+ 相册权限请求
+ */
+@interface BqPhotoAuthorizationItem : BqAuthorizationItem
+
+@end
+```
+
+```objective-c
+#import "BqPhotoAuthorizationItem.h"
+#import <Photos/Photos.h>
+
+@implementation BqPhotoAuthorizationItem
+
+- (void)commonInit {
+	self.authorizationName = @"相册";
+	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+		PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+		statusHandler((BqAuthorizationStatus)status);
+	};
+	self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+		[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+			statusHandler((BqAuthorizationStatus)status);
+		}];
+	};
+}
+```
+
+### 权限请求使用
+
+```objective-c
+BqPhotoAuthorizationItem *photoAuthorization = [[BqPhotoAuthorizationItem alloc] init];
+photoAuthorization.viewControllerForAlert = self;
+photoAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
+	if (!authorized) return;
+	// 后续操作
+	UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+	imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	[weakSelf presentViewController:imagePickerController animated:YES completion:nil];
+};
+```
