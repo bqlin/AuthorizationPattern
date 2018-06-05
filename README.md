@@ -6,7 +6,7 @@
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcgy1frzzfkz8vdj30m80lfmz8.jpg)
 
-因此，对于权限请求的结果，用户（开发者）一般只关心权限最终是否授权成功，然后继续原来的业务逻辑。因此用户（开发者）希望流程是这样的：
+因此，对于权限请求的结果，用户（开发者）一般只关心权限最终是否授权成功，然后继续原来的业务逻辑。因此用户（开发者）希望流程可能是这样的：
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcgy1fs0pkhxordj30m809caam.jpg)
 
