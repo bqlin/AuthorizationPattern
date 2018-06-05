@@ -4,7 +4,7 @@
 
 笔者在 iOS 开发过程中发现，大部分的权限请求都可以遵循以下流图的两步请求流程。
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1frzjkb90k9j316l152qbd.jpg)
+![](https://ws1.sinaimg.cn/large/006tKfTcgy1frzzfkz8vdj30m80lfmz8.jpg)
 
 因此，对于权限请求的结果，用户（开发者）一般只关心权限最终是否授权成功，然后继续原来的业务逻辑。
 
