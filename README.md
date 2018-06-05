@@ -6,7 +6,9 @@
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcgy1frzzfkz8vdj30m80lfmz8.jpg)
 
-因此，对于权限请求的结果，用户（开发者）一般只关心权限最终是否授权成功，然后继续原来的业务逻辑。
+因此，对于权限请求的结果，用户（开发者）一般只关心权限最终是否授权成功，然后继续原来的业务逻辑。因此用户（开发者）希望流程是这样的：
+
+![](https://ws1.sinaimg.cn/large/006tKfTcgy1fs0pkhxordj30m809caam.jpg)
 
 本项目把通过权限请求逻辑抽取并封装为 `BqAuthorizationItem`，并通过继承该类提供了一些常用权限请求的组件，用户可根据自身的项目需求添加其中权限请求。若在使用过程中有更好的建议或意见，欢迎 issue 我，或直接给我提 pr~
 
@@ -62,8 +64,6 @@ photoAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BO
 	NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 	if (!authorized) return;
 	// 后续操作
-	UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-	imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	[weakSelf presentViewController:imagePickerController animated:YES completion:nil];
 };
+[photoAuthorization requestAuthorization];
 ```
