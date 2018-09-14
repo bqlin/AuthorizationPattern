@@ -49,6 +49,9 @@ typedef void(^AuthorizationStatusBlock)(AuthorizationStatus status);
 typedef void(^RequestAuthorizationStatusBlock)(AuthorizationStatusBlock statusHandler);
 typedef void(^AuthorizationResultBlock)(AuthorizationItem *authorizationItem, BOOL authorized);
 
+/**
+ 权限请求封装类
+ */
 @interface AuthorizationItem : NSObject
 
 /// 用于呈现 UIAlertViewController 的 UIViewController
@@ -75,9 +78,10 @@ typedef void(^AuthorizationResultBlock)(AuthorizationItem *authorizationItem, BO
 /// 请求权限
 - (void)requestAuthorization;
 
-/// 请求权限工具方法
-+ (void)requestAuthorization:(RequestAuthorizationStatusBlock)authorizationRequestHandler
-			   currentStatus:(RequestAuthorizationStatusBlock)currentStatusHandler
-				resultStatus:(AuthorizationStatusBlock)statusCallback;
+@end
+
+@interface AuthorizationItem (Convenience)
+
++ (instancetype)authorizationItemOnViewController:(UIViewController *)viewControllerForAlert requestNow:(BOOL)requestNow completion:(AuthorizationResultBlock)completion;
 
 @end

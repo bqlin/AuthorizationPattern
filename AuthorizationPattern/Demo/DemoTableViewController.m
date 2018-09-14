@@ -34,7 +34,7 @@
 	
 	/// 相册
 	PhotoAuthorizationItem *photoAuthorization = [[PhotoAuthorizationItem alloc] init];
-	photoAuthorization.viewControllerForAlert = self;
+//    photoAuthorization.viewControllerForAlert = self;
 	photoAuthorization.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
@@ -47,7 +47,7 @@
 	
 	/// 相机
 	CameraAuthorizationItem *cameraAuthorizationItem = [[CameraAuthorizationItem alloc] init];
-	cameraAuthorizationItem.viewControllerForAlert = self;
+//    cameraAuthorizationItem.viewControllerForAlert = self;
 	cameraAuthorizationItem.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
