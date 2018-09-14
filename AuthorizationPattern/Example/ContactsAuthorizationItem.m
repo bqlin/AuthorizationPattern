@@ -1,57 +1,57 @@
 //
-//  BqContactsAuthorizationItem.m
+//  ContactsAuthorizationItem.m
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/6/2.
 //  Copyright © 2018年 Bq. All rights reserved.
 //
 
-#import "BqContactsAuthorizationItem.h"
+#import "ContactsAuthorizationItem.h"
 #import <Contacts/Contacts.h>
 #import <AddressBook/AddressBook.h>
 
-@implementation BqContactsAuthorizationItem
+@implementation ContactsAuthorizationItem
 
 - (void)commonInit {
 	self.authorizationName = @"联系人";
-	if (BQ_AVAILABLE(9.0)) {
-		self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+	if (UNIVERSAL_AVAILABLE(9.0)) {
+		self.currentStatusHandler = ^(AuthorizationStatusBlock statusHandler) {
 			CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-			statusHandler((BqAuthorizationStatus)status);
+			statusHandler((AuthorizationStatus)status);
 		};
-		self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+		self.requestHandler = ^(AuthorizationStatusBlock statusHandler) {
 			[[[CNContactStore alloc] init] requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
 				if (error) {
 					NSLog(@"Contacts authorization request error: %@", error);
-					statusHandler(BqAuthorizationStatusDenied);
+					statusHandler(AuthorizationStatusDenied);
 					return;
 				}
 				
-				BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
-				status = granted ? BqAuthorizationStatusAuthorized : BqAuthorizationStatusDenied;
+				AuthorizationStatus status = AuthorizationStatusUnknown;
+				status = granted ? AuthorizationStatusAuthorized : AuthorizationStatusDenied;
 				statusHandler(status);
 			}];
 		};
 	} else { // iOS 9 之前
-		self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+		self.currentStatusHandler = ^(AuthorizationStatusBlock statusHandler) {
 			ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
-			statusHandler((BqAuthorizationStatus)status);
+			statusHandler((AuthorizationStatus)status);
 		};
-		self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+		self.requestHandler = ^(AuthorizationStatusBlock statusHandler) {
 			ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
 			if (!addressBookRef) {
-				statusHandler(BqAuthorizationStatusDisabled);
+				statusHandler(AuthorizationStatusDisabled);
 				return;
 			}
 			ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
 				if (error) {
 					NSLog(@"Contacts authorization request error: %@", error);
-					statusHandler(BqAuthorizationStatusDenied);
+					statusHandler(AuthorizationStatusDenied);
 					return;
 				}
 				
-				BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
-				status = granted ? BqAuthorizationStatusAuthorized : BqAuthorizationStatusDenied;
+				AuthorizationStatus status = AuthorizationStatusUnknown;
+				status = granted ? AuthorizationStatusAuthorized : AuthorizationStatusDenied;
 				statusHandler(status);
 				CFRelease(addressBookRef);
 			});

@@ -1,30 +1,30 @@
 //
-//  BqAuthorizationItem.m
+//  AuthorizationItem.m
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/5/11.
 //  Copyright © 2018年 Bq. All rights reserved.
 //
 
-#import "BqAuthorizationItem.h"
+#import "AuthorizationItem.h"
 
-@implementation BqAuthorizationItem
+@implementation AuthorizationItem
 
-+ (void)requestAuthorization:(BqRequestAuthorizationStatusBlock)authorizationRequestHandler
-			   currentStatus:(BqRequestAuthorizationStatusBlock)currentStatusHandler
-				resultStatus:(BqAuthorizationStatusBlock)statusCallback {
-	if (currentStatusHandler) currentStatusHandler(^(BqAuthorizationStatus status) {
++ (void)requestAuthorization:(RequestAuthorizationStatusBlock)authorizationRequestHandler
+			   currentStatus:(RequestAuthorizationStatusBlock)currentStatusHandler
+				resultStatus:(AuthorizationStatusBlock)statusCallback {
+	if (currentStatusHandler) currentStatusHandler(^(AuthorizationStatus status) {
 		//NSLog(@"current: %@", DescriptionForBqAuthorizationStatus(status));
 		switch (status) {
-			case BqAuthorizationStatusUnknown:{
-				if (authorizationRequestHandler) authorizationRequestHandler(^(BqAuthorizationStatus status) {
+			case AuthorizationStatusUnknown:{
+				if (authorizationRequestHandler) authorizationRequestHandler(^(AuthorizationStatus status) {
 					if (statusCallback) statusCallback(status);
 				});
 			} break;
-			case BqAuthorizationStatusRestricted:
-			case BqAuthorizationStatusDenied:
-			case BqAuthorizationStatusDisabled:
-			case BqAuthorizationStatusAuthorized: {
+			case AuthorizationStatusRestricted:
+			case AuthorizationStatusDenied:
+			case AuthorizationStatusDisabled:
+			case AuthorizationStatusAuthorized: {
 				if (statusCallback) statusCallback(status);
 			} break;
 		}
@@ -43,20 +43,20 @@
 - (void)requestAuthorization {
 	//[self checkInfoPlistCocoaKey];
 	__weak typeof(self) weakSelf = self;
-	[self.class requestAuthorization:self.requestHandler currentStatus:self.currentStatusHandler resultStatus:^(BqAuthorizationStatus status) {
+	[self.class requestAuthorization:self.requestHandler currentStatus:self.currentStatusHandler resultStatus:^(AuthorizationStatus status) {
 		//NSLog(@"after request: %@", DescriptionForBqAuthorizationStatus(status));
 		switch (status) {
-			case BqAuthorizationStatusUnknown: {} break;
-			case BqAuthorizationStatusRestricted:
-			case BqAuthorizationStatusDenied: {
+			case AuthorizationStatusUnknown: {} break;
+			case AuthorizationStatusRestricted:
+			case AuthorizationStatusDenied: {
 				[weakSelf showDeniedAlert];
 				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, NO);
 			} break;
-			case BqAuthorizationStatusDisabled: {
+			case AuthorizationStatusDisabled: {
 				[weakSelf showDisableAlert];
 				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, NO);
 			} break;
-			case BqAuthorizationStatusAuthorized: {
+			case AuthorizationStatusAuthorized: {
 				if (weakSelf.resultCallback) weakSelf.resultCallback(weakSelf, YES);
 			} break;
 		}

@@ -1,26 +1,26 @@
 //
-//  BqDemoTableViewController.m
+//  DemoTableViewController.m
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/5/11.
 //  Copyright © 2018年 Bq. All rights reserved.
 //
 
-#import "BqDemoTableViewController.h"
-#import "BqAuthorizationItem.h"
-#import "BqPhotoAuthorizationItem.h"
-#import "BqLocationAuthorizationItem.h"
-#import "BqContactsAuthorizationItem.h"
-#import "BqMicrophoneAuthorizationItem.h"
-#import "BqCameraAuthorizationItem.h"
+#import "DemoTableViewController.h"
+#import "AuthorizationItem.h"
+#import "PhotoAuthorizationItem.h"
+#import "LocationAuthorizationItem.h"
+#import "ContactsAuthorizationItem.h"
+#import "MicrophoneAuthorizationItem.h"
+#import "CameraAuthorizationItem.h"
 
-@interface BqDemoTableViewController ()
+@interface DemoTableViewController ()
 
-@property (nonatomic, strong) NSArray<BqAuthorizationItem *> *authorizationItems;
+@property (nonatomic, strong) NSArray<AuthorizationItem *> *authorizationItems;
 
 @end
 
-@implementation BqDemoTableViewController
+@implementation DemoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,9 +33,9 @@
 	NSMutableArray *authorizationItems = [NSMutableArray array];
 	
 	/// 相册
-	BqPhotoAuthorizationItem *photoAuthorization = [[BqPhotoAuthorizationItem alloc] init];
+	PhotoAuthorizationItem *photoAuthorization = [[PhotoAuthorizationItem alloc] init];
 	photoAuthorization.viewControllerForAlert = self;
-	photoAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	photoAuthorization.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
 		// 后续操作
@@ -46,9 +46,9 @@
 	[authorizationItems addObject:photoAuthorization];
 	
 	/// 相机
-	BqCameraAuthorizationItem *cameraAuthorizationItem = [[BqCameraAuthorizationItem alloc] init];
+	CameraAuthorizationItem *cameraAuthorizationItem = [[CameraAuthorizationItem alloc] init];
 	cameraAuthorizationItem.viewControllerForAlert = self;
-	cameraAuthorizationItem.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	cameraAuthorizationItem.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
 		// 后续操作
@@ -56,9 +56,9 @@
 	[authorizationItems addObject:cameraAuthorizationItem];
 	
 	/// 麦克风
-	BqMicrophoneAuthorizationItem *microphoneAuthorizationItem = [[BqMicrophoneAuthorizationItem alloc] init];
+	MicrophoneAuthorizationItem *microphoneAuthorizationItem = [[MicrophoneAuthorizationItem alloc] init];
 	microphoneAuthorizationItem.viewControllerForAlert = self;
-	microphoneAuthorizationItem.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	microphoneAuthorizationItem.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
 		// 后续操作
@@ -66,9 +66,9 @@
 	[authorizationItems addObject:microphoneAuthorizationItem];
 	
 	/// 定位
-	BqLocationAuthorizationItem *locationAuthorization = [[BqLocationAuthorizationItem alloc] init];
+	LocationAuthorizationItem *locationAuthorization = [[LocationAuthorizationItem alloc] init];
 	locationAuthorization.viewControllerForAlert = self;
-	locationAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	locationAuthorization.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
 		// 后续操作
@@ -76,9 +76,9 @@
 	[authorizationItems addObject:locationAuthorization];
 	
 	/// 联系人
-	BqContactsAuthorizationItem *contactsAuthorization = [[BqContactsAuthorizationItem alloc] init];
+	ContactsAuthorizationItem *contactsAuthorization = [[ContactsAuthorizationItem alloc] init];
 	contactsAuthorization.viewControllerForAlert = self;
-	contactsAuthorization.resultCallback = ^(BqAuthorizationItem *authorizationItem, BOOL authorized) {
+	contactsAuthorization.resultCallback = ^(AuthorizationItem *authorizationItem, BOOL authorized) {
 		NSLog(@"%@%@", authorizationItem.authorizationName, authorized ? @"授权成功" : @"未授权");
 		if (!authorized) return;
 		// 后续操作
@@ -104,7 +104,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	BqAuthorizationItem *item = self.authorizationItems[indexPath.row];
+	AuthorizationItem *item = self.authorizationItems[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
 	cell.textLabel.text = item.authorizationName;
 	
@@ -112,7 +112,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	BqAuthorizationItem *item = self.authorizationItems[indexPath.row];
+	AuthorizationItem *item = self.authorizationItems[indexPath.row];
 	[item requestAuthorization];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

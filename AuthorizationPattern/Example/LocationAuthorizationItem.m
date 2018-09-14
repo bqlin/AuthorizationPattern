@@ -1,62 +1,62 @@
 //
-//  BqLocationAuthorizationItem.m
+//  LocationAuthorizationItem.m
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/5/30.
 //  Copyright © 2018年 Bq. All rights reserved.
 //
 
-#import "BqLocationAuthorizationItem.h"
+#import "LocationAuthorizationItem.h"
 #import <CoreLocation/CoreLocation.h>
 
-NS_INLINE BqAuthorizationStatus authorizationStatusWithCLAuthorizationStatus(CLAuthorizationStatus locationStatus) {
-	BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
+NS_INLINE AuthorizationStatus authorizationStatusWithCLAuthorizationStatus(CLAuthorizationStatus locationStatus) {
+	AuthorizationStatus status = AuthorizationStatusUnknown;
 	switch (locationStatus) {
 		case kCLAuthorizationStatusAuthorizedAlways:
 		case kCLAuthorizationStatusAuthorizedWhenInUse:{
-			status = BqAuthorizationStatusAuthorized;
+			status = AuthorizationStatusAuthorized;
 		} break;
 		case kCLAuthorizationStatusDenied:{
-			status = BqAuthorizationStatusDenied;
+			status = AuthorizationStatusDenied;
 		} break;
 		case kCLAuthorizationStatusRestricted:{
-			status = BqAuthorizationStatusRestricted;
+			status = AuthorizationStatusRestricted;
 		} break;
 		case kCLAuthorizationStatusNotDetermined:{
-			status = BqAuthorizationStatusUnknown;
+			status = AuthorizationStatusUnknown;
 		} break;
 	}
 	return status;
 }
 
-typedef void(^BqLocationAuthorizationChangeBlock)(CLAuthorizationStatus locationStatus);
+typedef void(^LocationAuthorizationChangeBlock)(CLAuthorizationStatus locationStatus);
 
-@interface BqLocationAuthorizationItem ()<CLLocationManagerDelegate>
+@interface LocationAuthorizationItem ()<CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, copy) BqLocationAuthorizationChangeBlock locationAuthorizationChangeHandler;
+@property (nonatomic, copy) LocationAuthorizationChangeBlock locationAuthorizationChangeHandler;
 
 @end
 
-@implementation BqLocationAuthorizationItem
+@implementation LocationAuthorizationItem
 
 - (void)commonInit {
 	self.authorizationName = @"定位服务";
-	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
-		BqAuthorizationStatus status = BqAuthorizationStatusUnknown;
+	self.currentStatusHandler = ^(AuthorizationStatusBlock statusHandler) {
+		AuthorizationStatus status = AuthorizationStatusUnknown;
 		if (![CLLocationManager locationServicesEnabled]) {
-			status = BqAuthorizationStatusDisabled;
+			status = AuthorizationStatusDisabled;
 			return;
 		}
 		status = authorizationStatusWithCLAuthorizationStatus([CLLocationManager authorizationStatus]);
 		statusHandler(status);
 	};
 	__weak typeof(self) weakSelf = self;
-	self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+	self.requestHandler = ^(AuthorizationStatusBlock statusHandler) {
 		//[weakSelf.locationManager requestWhenInUseAuthorization];
 		[weakSelf.locationManager requestAlwaysAuthorization];
 		weakSelf.locationAuthorizationChangeHandler = ^(CLAuthorizationStatus locationStatus) {
-			BqAuthorizationStatus status = authorizationStatusWithCLAuthorizationStatus(locationStatus);
+			AuthorizationStatus status = authorizationStatusWithCLAuthorizationStatus(locationStatus);
 			statusHandler(status);
 		};
 	};

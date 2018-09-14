@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0390DC0A20C266760093B597 /* BqContactsAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC0920C266760093B597 /* BqContactsAuthorizationItem.m */; };
-		0390DC1020C2D3190093B597 /* BqMicrophoneAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC0F20C2D3190093B597 /* BqMicrophoneAuthorizationItem.m */; };
-		0390DC1320C2D46F0093B597 /* BqCameraAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC1220C2D46F0093B597 /* BqCameraAuthorizationItem.m */; };
+		0390DC0A20C266760093B597 /* ContactsAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC0920C266760093B597 /* ContactsAuthorizationItem.m */; };
+		0390DC1020C2D3190093B597 /* MicrophoneAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC0F20C2D3190093B597 /* MicrophoneAuthorizationItem.m */; };
+		0390DC1320C2D46F0093B597 /* CameraAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390DC1220C2D46F0093B597 /* CameraAuthorizationItem.m */; };
 		03C2173B20A5347700AD7770 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2173A20A5347700AD7770 /* AppDelegate.m */; };
 		03C2174120A5347700AD7770 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C2173F20A5347700AD7770 /* Main.storyboard */; };
 		03C2174320A5347700AD7770 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C2174220A5347700AD7770 /* Assets.xcassets */; };
 		03C2174620A5347700AD7770 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C2174420A5347700AD7770 /* LaunchScreen.storyboard */; };
 		03C2174920A5347700AD7770 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2174820A5347700AD7770 /* main.m */; };
-		03C2175520A53F4D00AD7770 /* BqAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175420A53F4D00AD7770 /* BqAuthorizationItem.m */; };
-		03C2175B20A57BC700AD7770 /* BqPhotoAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175A20A57BC700AD7770 /* BqPhotoAuthorizationItem.m */; };
-		03C2175E20A5931E00AD7770 /* BqDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175D20A5931E00AD7770 /* BqDemoTableViewController.m */; };
-		03ECC4B220BEF7DA00BBEB56 /* BqLocationAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ECC4B120BEF7DA00BBEB56 /* BqLocationAuthorizationItem.m */; };
+		03C2175520A53F4D00AD7770 /* AuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175420A53F4D00AD7770 /* AuthorizationItem.m */; };
+		03C2175B20A57BC700AD7770 /* PhotoAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175A20A57BC700AD7770 /* PhotoAuthorizationItem.m */; };
+		03C2175E20A5931E00AD7770 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C2175D20A5931E00AD7770 /* DemoTableViewController.m */; };
+		03ECC4B220BEF7DA00BBEB56 /* LocationAuthorizationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ECC4B120BEF7DA00BBEB56 /* LocationAuthorizationItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0390DC0820C266760093B597 /* BqContactsAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqContactsAuthorizationItem.h; sourceTree = "<group>"; };
-		0390DC0920C266760093B597 /* BqContactsAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqContactsAuthorizationItem.m; sourceTree = "<group>"; };
-		0390DC0E20C2D3190093B597 /* BqMicrophoneAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqMicrophoneAuthorizationItem.h; sourceTree = "<group>"; };
-		0390DC0F20C2D3190093B597 /* BqMicrophoneAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqMicrophoneAuthorizationItem.m; sourceTree = "<group>"; };
-		0390DC1120C2D46F0093B597 /* BqCameraAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqCameraAuthorizationItem.h; sourceTree = "<group>"; };
-		0390DC1220C2D46F0093B597 /* BqCameraAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqCameraAuthorizationItem.m; sourceTree = "<group>"; };
+		0390DC0820C266760093B597 /* ContactsAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsAuthorizationItem.h; sourceTree = "<group>"; };
+		0390DC0920C266760093B597 /* ContactsAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactsAuthorizationItem.m; sourceTree = "<group>"; };
+		0390DC0E20C2D3190093B597 /* MicrophoneAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicrophoneAuthorizationItem.h; sourceTree = "<group>"; };
+		0390DC0F20C2D3190093B597 /* MicrophoneAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MicrophoneAuthorizationItem.m; sourceTree = "<group>"; };
+		0390DC1120C2D46F0093B597 /* CameraAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraAuthorizationItem.h; sourceTree = "<group>"; };
+		0390DC1220C2D46F0093B597 /* CameraAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraAuthorizationItem.m; sourceTree = "<group>"; };
 		03C2173620A5347700AD7770 /* AuthorizationPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthorizationPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C2173920A5347700AD7770 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		03C2173A20A5347700AD7770 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -36,14 +36,14 @@
 		03C2174520A5347700AD7770 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03C2174720A5347700AD7770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03C2174820A5347700AD7770 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		03C2175320A53F4D00AD7770 /* BqAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqAuthorizationItem.h; sourceTree = "<group>"; };
-		03C2175420A53F4D00AD7770 /* BqAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqAuthorizationItem.m; sourceTree = "<group>"; };
-		03C2175920A57BC700AD7770 /* BqPhotoAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqPhotoAuthorizationItem.h; sourceTree = "<group>"; };
-		03C2175A20A57BC700AD7770 /* BqPhotoAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqPhotoAuthorizationItem.m; sourceTree = "<group>"; };
-		03C2175C20A5931E00AD7770 /* BqDemoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqDemoTableViewController.h; sourceTree = "<group>"; };
-		03C2175D20A5931E00AD7770 /* BqDemoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqDemoTableViewController.m; sourceTree = "<group>"; };
-		03ECC4B020BEF7DA00BBEB56 /* BqLocationAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BqLocationAuthorizationItem.h; sourceTree = "<group>"; };
-		03ECC4B120BEF7DA00BBEB56 /* BqLocationAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BqLocationAuthorizationItem.m; sourceTree = "<group>"; };
+		03C2175320A53F4D00AD7770 /* AuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorizationItem.h; sourceTree = "<group>"; };
+		03C2175420A53F4D00AD7770 /* AuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthorizationItem.m; sourceTree = "<group>"; };
+		03C2175920A57BC700AD7770 /* PhotoAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAuthorizationItem.h; sourceTree = "<group>"; };
+		03C2175A20A57BC700AD7770 /* PhotoAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAuthorizationItem.m; sourceTree = "<group>"; };
+		03C2175C20A5931E00AD7770 /* DemoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
+		03C2175D20A5931E00AD7770 /* DemoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
+		03ECC4B020BEF7DA00BBEB56 /* LocationAuthorizationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationAuthorizationItem.h; sourceTree = "<group>"; };
+		03ECC4B120BEF7DA00BBEB56 /* LocationAuthorizationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationAuthorizationItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,20 +76,20 @@
 		03C2173820A5347700AD7770 /* AuthorizationPattern */ = {
 			isa = PBXGroup;
 			children = (
-				03C2174F20A5348300AD7770 /* BqAuthorizationPattern */,
+				03C2174F20A5348300AD7770 /* AuthorizationPattern */,
 				03C2175720A57AEE00AD7770 /* Example */,
 				03C2175620A57AA700AD7770 /* Demo */,
 			);
 			path = AuthorizationPattern;
 			sourceTree = "<group>";
 		};
-		03C2174F20A5348300AD7770 /* BqAuthorizationPattern */ = {
+		03C2174F20A5348300AD7770 /* AuthorizationPattern */ = {
 			isa = PBXGroup;
 			children = (
-				03C2175320A53F4D00AD7770 /* BqAuthorizationItem.h */,
-				03C2175420A53F4D00AD7770 /* BqAuthorizationItem.m */,
+				03C2175320A53F4D00AD7770 /* AuthorizationItem.h */,
+				03C2175420A53F4D00AD7770 /* AuthorizationItem.m */,
 			);
-			path = BqAuthorizationPattern;
+			path = AuthorizationPattern;
 			sourceTree = "<group>";
 		};
 		03C2175620A57AA700AD7770 /* Demo */ = {
@@ -97,8 +97,8 @@
 			children = (
 				03C2173920A5347700AD7770 /* AppDelegate.h */,
 				03C2173A20A5347700AD7770 /* AppDelegate.m */,
-				03C2175C20A5931E00AD7770 /* BqDemoTableViewController.h */,
-				03C2175D20A5931E00AD7770 /* BqDemoTableViewController.m */,
+				03C2175C20A5931E00AD7770 /* DemoTableViewController.h */,
+				03C2175D20A5931E00AD7770 /* DemoTableViewController.m */,
 				03C2173F20A5347700AD7770 /* Main.storyboard */,
 				03C2174220A5347700AD7770 /* Assets.xcassets */,
 				03C2174420A5347700AD7770 /* LaunchScreen.storyboard */,
@@ -111,16 +111,16 @@
 		03C2175720A57AEE00AD7770 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				03C2175920A57BC700AD7770 /* BqPhotoAuthorizationItem.h */,
-				03C2175A20A57BC700AD7770 /* BqPhotoAuthorizationItem.m */,
-				03ECC4B020BEF7DA00BBEB56 /* BqLocationAuthorizationItem.h */,
-				03ECC4B120BEF7DA00BBEB56 /* BqLocationAuthorizationItem.m */,
-				0390DC0820C266760093B597 /* BqContactsAuthorizationItem.h */,
-				0390DC0920C266760093B597 /* BqContactsAuthorizationItem.m */,
-				0390DC0E20C2D3190093B597 /* BqMicrophoneAuthorizationItem.h */,
-				0390DC0F20C2D3190093B597 /* BqMicrophoneAuthorizationItem.m */,
-				0390DC1120C2D46F0093B597 /* BqCameraAuthorizationItem.h */,
-				0390DC1220C2D46F0093B597 /* BqCameraAuthorizationItem.m */,
+				03C2175920A57BC700AD7770 /* PhotoAuthorizationItem.h */,
+				03C2175A20A57BC700AD7770 /* PhotoAuthorizationItem.m */,
+				03ECC4B020BEF7DA00BBEB56 /* LocationAuthorizationItem.h */,
+				03ECC4B120BEF7DA00BBEB56 /* LocationAuthorizationItem.m */,
+				0390DC0820C266760093B597 /* ContactsAuthorizationItem.h */,
+				0390DC0920C266760093B597 /* ContactsAuthorizationItem.m */,
+				0390DC0E20C2D3190093B597 /* MicrophoneAuthorizationItem.h */,
+				0390DC0F20C2D3190093B597 /* MicrophoneAuthorizationItem.m */,
+				0390DC1120C2D46F0093B597 /* CameraAuthorizationItem.h */,
+				0390DC1220C2D46F0093B597 /* CameraAuthorizationItem.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 		03C2172E20A5347700AD7770 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Bq;
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Bq;
 				TargetAttributes = {
@@ -197,14 +197,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03C2175B20A57BC700AD7770 /* BqPhotoAuthorizationItem.m in Sources */,
-				0390DC1020C2D3190093B597 /* BqMicrophoneAuthorizationItem.m in Sources */,
-				0390DC1320C2D46F0093B597 /* BqCameraAuthorizationItem.m in Sources */,
-				03C2175520A53F4D00AD7770 /* BqAuthorizationItem.m in Sources */,
-				0390DC0A20C266760093B597 /* BqContactsAuthorizationItem.m in Sources */,
-				03ECC4B220BEF7DA00BBEB56 /* BqLocationAuthorizationItem.m in Sources */,
+				03C2175B20A57BC700AD7770 /* PhotoAuthorizationItem.m in Sources */,
+				0390DC1020C2D3190093B597 /* MicrophoneAuthorizationItem.m in Sources */,
+				0390DC1320C2D46F0093B597 /* CameraAuthorizationItem.m in Sources */,
+				03C2175520A53F4D00AD7770 /* AuthorizationItem.m in Sources */,
+				0390DC0A20C266760093B597 /* ContactsAuthorizationItem.m in Sources */,
+				03ECC4B220BEF7DA00BBEB56 /* LocationAuthorizationItem.m in Sources */,
 				03C2174920A5347700AD7770 /* main.m in Sources */,
-				03C2175E20A5931E00AD7770 /* BqDemoTableViewController.m in Sources */,
+				03C2175E20A5931E00AD7770 /* DemoTableViewController.m in Sources */,
 				03C2173B20A5347700AD7770 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

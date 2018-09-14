@@ -1,25 +1,25 @@
 //
-//  BqMicrophoneAuthorizationItem.m
+//  MicrophoneAuthorizationItem.m
 //  AuthorizationPattern
 //
 //  Created by Bq Lin on 2018/6/2.
 //  Copyright © 2018年 Bq. All rights reserved.
 //
 
-#import "BqMicrophoneAuthorizationItem.h"
+#import "MicrophoneAuthorizationItem.h"
 #import <AVFoundation/AVFoundation.h>
 
-@implementation BqMicrophoneAuthorizationItem
+@implementation MicrophoneAuthorizationItem
 
 - (void)commonInit {
 	self.authorizationName = @"麦克风";
-	self.currentStatusHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+	self.currentStatusHandler = ^(AuthorizationStatusBlock statusHandler) {
 		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-		statusHandler((BqAuthorizationStatus)status);
+		statusHandler((AuthorizationStatus)status);
 	};
-	self.requestHandler = ^(BqAuthorizationStatusBlock statusHandler) {
+	self.requestHandler = ^(AuthorizationStatusBlock statusHandler) {
 		[[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-			BqAuthorizationStatus status = granted ? BqAuthorizationStatusAuthorized : BqAuthorizationStatusDenied;
+			AuthorizationStatus status = granted ? AuthorizationStatusAuthorized : AuthorizationStatusDenied;
 			statusHandler(status);
 		}];
 	};
