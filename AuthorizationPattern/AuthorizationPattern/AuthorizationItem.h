@@ -22,25 +22,13 @@ typedef NS_ENUM(NSInteger, AuthorizationStatus) {
 	AuthorizationStatusAuthorized,
 	AuthorizationStatusDisabled
 };
-NS_INLINE NSString *DescriptionForBqAuthorizationStatus(AuthorizationStatus status) {
-	switch (status) {
-		case AuthorizationStatusUnknown:{
-			return @"Authorization Unknown";
-		} break;
-		case AuthorizationStatusRestricted:{
-			return @"Authorization Restricted";
-		} break;
-		case AuthorizationStatusDenied:{
-			return @"Authorization Denied";
-		} break;
-		case AuthorizationStatusAuthorized:{
-			return @"Authorization Authorized";
-		} break;
-		case AuthorizationStatusDisabled:{
-			return @"Authorization Disabled";
-		} break;
-	}
-}
+static NSString * const AuthorizationStatusName[] = {
+    [AuthorizationStatusUnknown] = @"Authorization Unknown",
+    [AuthorizationStatusRestricted] = @"Authorization Restricted",
+    [AuthorizationStatusDenied] = @"Authorization Denied",
+    [AuthorizationStatusAuthorized] = @"Authorization Authorized",
+    [AuthorizationStatusDisabled] = @"Authorization Disabled",
+};
 
 @class AuthorizationItem;
 typedef void(^AuthorizationStatusBlock)(AuthorizationStatus status);
@@ -80,6 +68,6 @@ typedef void(^AuthorizationResultBlock)(AuthorizationItem *authorizationItem, BO
 
 @interface AuthorizationItem (Convenience)
 
-+ (instancetype)authorizationItemOnViewController:(UIViewController *)viewControllerForAlert requestNow:(BOOL)requestNow completion:(AuthorizationResultBlock)completion;
+- (void)checkAuthorizationWithCompletion:(AuthorizationResultBlock)completion;
 
 @end

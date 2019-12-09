@@ -34,7 +34,7 @@
 	//[self checkInfoPlistCocoaKey];
 	__weak typeof(self) weakSelf = self;
 	[self requestAuthorization:self.requestHandler currentStatus:self.currentStatusHandler resultStatus:^(AuthorizationStatus status) {
-		//NSLog(@"after request: %@", DescriptionForBqAuthorizationStatus(status));
+		//NSLog(@"after request: %@", DescriptionForAuthorizationStatus(status));
         BOOL authorized = NO;
 		switch (status) {
 			case AuthorizationStatusAuthorized: {
@@ -111,7 +111,7 @@
                currentStatus:(RequestAuthorizationStatusBlock)currentStatusHandler
                 resultStatus:(AuthorizationStatusBlock)statusCallback {
     if (currentStatusHandler) currentStatusHandler(^(AuthorizationStatus status) {
-        //NSLog(@"current: %@", DescriptionForBqAuthorizationStatus(status));
+        //NSLog(@"current: %@", DescriptionForAuthorizationStatus(status));
         switch (status) {
             case AuthorizationStatusUnknown: {
                 if (authorizationRequestHandler) authorizationRequestHandler(^(AuthorizationStatus status) {
@@ -138,12 +138,9 @@
 
 @implementation AuthorizationItem (Convenience)
 
-+ (instancetype)authorizationItemOnViewController:(UIViewController *)viewControllerForAlert requestNow:(BOOL)requestNow completion:(AuthorizationResultBlock)completion {
-    AuthorizationItem *authorization = [[self alloc] init];
-    authorization.viewControllerForAlert = viewControllerForAlert;
-    authorization.resultCallback = completion;
-    if (requestNow) [authorization requestAuthorization];
-    return authorization;
+- (void)checkAuthorizationWithCompletion:(AuthorizationResultBlock)completion {
+    self.resultCallback = completion;
+    [self requestAuthorization];
 }
 
 @end
