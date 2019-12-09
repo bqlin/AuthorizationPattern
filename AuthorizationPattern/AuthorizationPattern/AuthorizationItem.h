@@ -10,10 +10,8 @@
 
 #define Xcode9 __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
 #if Xcode9
-/// 可用版本
 #define UNIVERSAL_AVAILABLE(version) @available(iOS version, *)
 #else
-/// 可用版本
 #define UNIVERSAL_AVAILABLE(version) ([UIDevice currentDevice].systemVersion.floatValue >= (version))
 #endif
 
